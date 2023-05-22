@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import StockLookup from './components/StockLookup'
+import Header from './components/Header';
+import Footer from './components/Footer';
+import StockDetails from './components/StockDetails';
+import { useState, useEffect } from 'react';
+
 
 function App() {
+  const [stock, setStock]= useState([])
+
+  const fetchData = () =>{
+  fetch("https://data.sec.gov/submissions/CIK0000320193.json")
+  .then((response) => response.json())
+  .then((data) => setStock(data.name));
+  }
+
+  useEffect(() => {
+    fetchData()
+  },[])
+
+
+
+
+  
+ 
+
+  console.log(stock)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+    <Header />
+    <StockLookup />
+    <StockDetails data={stock}/>
+    <Footer />
+    </>
+  )}
+    
+
 
 export default App;
