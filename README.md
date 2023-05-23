@@ -9,5 +9,6 @@ To start the app locally:
 4. In the local repository folder, type, 'NPM START'. 
 
 
+![image](https://github.com/kblack-git/react-www/assets/124939777/53774e21-b018-43b4-a2ae-d992b72ae490)
 
 
