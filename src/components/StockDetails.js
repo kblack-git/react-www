@@ -7,7 +7,10 @@ const StockDetails = (props) => {
    
 
     return (
-        <div>{props.data}</div>
+        <>
+        <h1>Symbol={props.ticker}  Company Name={props.name} CIK={props.cik}</h1>
+        </>
+       
 
     )
 }

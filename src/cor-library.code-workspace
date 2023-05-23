@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../cor-library"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../original-cor-library"
+		}
+	],
+	"settings": {}
+}
