@@ -129,13 +129,18 @@
 import { useState, useEffect } from "react";
 import StockDetails from "./StockDetails";
 import CompanyData from "./CompanyData";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const StockLookup = () => {
   const [textBoxValue, setTextBoxValue] = useState("");
   const [stockSymbol, setStockSymbol] = useState("");
   const [cikString, setCikString] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [dataFromSecGov, setDataFromSecGov]= useState(null)
+  const [dataFromSecGov, setDataFromSecGov]= useState("")
+  const [url, setUrl]= useState("")
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,9 +172,15 @@ const StockLookup = () => {
             `https://data.sec.gov/submissions/CIK${cikString}.json`
           );
           const data = await response.json();
-          console.log('secGovFetch', data)
+        //   console.log('secGovFetch', data)
           setDataFromSecGov(data);
-          console.log(dataFromSecGov.cik)
+          console.log(dataFromSecGov)
+        //   console.log(dataFromSecGov.filings.recent.accessionNumber[0])
+        //   console.log(dataFromSecGov.filings.recent.primaryDocument[0])
+        //   console.log(`www.sec.gov/Archives/edgar/data/`+(dataFromSecGov.cik)+'/'+(dataFromSecGov.filings.recent.accessionNumber[0])/replace(/-/g, '')+'/'+(dataFromSecGov.filings.recent.primaryDocument[0]))
+        //   setUrl(`www.sec.gov/Archives/edgar/data/${dataFromSecGov.cik}/${(dataFromSecGov.filings.recent.accessionNumber[0]).replace(/-/g, '')}/${dataFromSecGov.filings.recent.primaryDocument[0]}`)
+          console.log(url)
+          console.log("testing", url)
         } catch (error) {
           console.error(error);
         }
@@ -178,27 +189,36 @@ const StockLookup = () => {
     fetchSecData();
   }, [cikString]);
 
+    
+// console.log(`www.sec.gov/Archives/edgar/data/`+(dataFromSecGov.cik)+'/'+(dataFromSecGov.filings.recent.accessionNumber[0]))
+console.log(dataFromSecGov) 
+
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setStockSymbol(textBoxValue);
     setTextBoxValue("");
+    setUrl(`www.sec.gov/Archives/edgar/data/${dataFromSecGov.cik}/${(dataFromSecGov.filings.recent.accessionNumber[0]).replace(/-/g, '')}/${dataFromSecGov.filings.recent.primaryDocument[0]}`)
+
   };
   return (
     <>
+      
       <form onSubmit={handleSubmit}>
         <label>Enter the stock symbol or Company Name</label>
         <input
           type="text"
           value={textBoxValue}
-          onChange={(e) => setTextBoxValue(e.target.value)}
+          onChange={(e) => setTextBoxValue((e.target.value).toUpperCase())}
         />
         <button>Submit</button>
       </form>
       <StockDetails ticker={stockSymbol} name={companyName} cik={cikString} />
-      <CompanyData  exchange={dataFromSecGov.exchanges} business={dataFromSecGov.sicDescription}/>
+      <CompanyData  exchange={dataFromSecGov.exchanges} business={dataFromSecGov.sicDescription} url={url}/>
+      <Footer />
     </>
+    
   );
 };
 export default StockLookup;
