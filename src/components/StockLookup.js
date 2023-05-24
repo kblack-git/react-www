@@ -128,6 +128,8 @@
 
 import { useState, useEffect } from "react";
 import StockDetails from "./StockDetails";
+import CompanyData from "./CompanyData";
+
 const StockLookup = () => {
   const [textBoxValue, setTextBoxValue] = useState("");
   const [stockSymbol, setStockSymbol] = useState("");
@@ -167,6 +169,7 @@ const StockLookup = () => {
           const data = await response.json();
           console.log('secGovFetch', data)
           setDataFromSecGov(data);
+          console.log(dataFromSecGov.cik)
         } catch (error) {
           console.error(error);
         }
@@ -194,6 +197,7 @@ const StockLookup = () => {
         <button>Submit</button>
       </form>
       <StockDetails ticker={stockSymbol} name={companyName} cik={cikString} />
+      <CompanyData  exchange={dataFromSecGov.exchanges} business={dataFromSecGov.sicDescription}/>
     </>
   );
 };
