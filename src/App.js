@@ -1,7 +1,11 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 import StockLookup from './components/StockLookup'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import About from './components/About';
+import Contact from './components/Contact';
 
 
 
@@ -31,13 +35,25 @@ function App() {
 
   
   return (
-    <>
-    <Header />
-    <StockLookup />
-   
-    <Footer />
-    </>
+    
+    <BrowserRouter>
+    <Navbar />
+      <Routes>
+      {/* <Header /> */}
+      {/* <StockLookup /> */}
+      <Route exact path="/" element={<StockLookup />} />
+      <Route path="/stocklookup" element={<StockLookup />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+
+
+      
+      {/* <Footer /> */}
+      </Routes>
+    </BrowserRouter>
   )}
+
+   
     
 
 
