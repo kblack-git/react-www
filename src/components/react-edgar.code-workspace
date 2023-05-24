@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "../.."
+		},
+		{
+			"path": "../../../original-cor-library"
+		},
+		{
+			"path": "../../../cor-library"
 		}
 	]
 }

@@ -8,7 +8,9 @@ const StockDetails = (props) => {
 
     return (
         <>
-        <h1>Symbol={props.ticker}  Company Name={props.name} CIK={props.cik}</h1>
+        <h3>Symbol: {props.ticker}</h3>
+        <h3>Company Name: {props.name}</h3>
+        <h3></h3>
         </>
        
 
