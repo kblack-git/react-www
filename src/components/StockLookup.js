@@ -138,9 +138,9 @@ const StockLookup = () => {
   const [cikString, setCikString] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [dataFromSecGov, setDataFromSecGov]= useState("")
+
   const [url, setUrl]= useState("")
 
-  
 
   useEffect(() => {
     const fetchData = async () => {
