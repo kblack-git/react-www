@@ -1,12 +1,14 @@
 .footer {
     display: flex;
-    justify-content: center;
-    /* align-items: end;  */
+    justify-content: space-evenly;
+    align-items: center; 
     /* vertical-align: bottom; */
     background-color: gray;
     position: absolute;
     bottom: 0;
     width: 100%;
     color: white;
+    height: 50px;
+    ;
 
 }

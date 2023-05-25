@@ -9,13 +9,16 @@ const CompanyData = (props) => {
    
     return (
         <>
+        <div classname={styles.component}>
         <h2>{props.exchange} </h2>
         <h2>Primary Business: {props.business}</h2>
         <div className={styles.link}>
-            <a href={`https://${props.url}`}  target="_blank">Link to company's most recent filing </a>
-
+            <a className={styles.button} href={`https://${props.url}`}  target="_blank"><input classname={styles.button} type="submit" value="View most recent filing" /> </a>
+            
+        </div>
         </div>
         </>
+    
 
     )
 

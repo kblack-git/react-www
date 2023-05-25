@@ -5,9 +5,9 @@ import styles from '../styles/footer.module.css'
 const Footer = () => {
     return (
         <>
-        <footer className={styles.footer}>
-        <Link to="/about">About</Link>
-        <Link to="/about">Contact</Link>
+        <footer className={styles.footer} height='75px'>
+        <Link to="/about" style={{ textDecoration: 'none', fontWeight:'bold', color:'black' }} > About</Link>
+        <Link to="/contact" style={{ textDecoration: 'none', fontWeight:'bold', color:'black'  }}> Contact</Link>
         </footer>
         </>
 

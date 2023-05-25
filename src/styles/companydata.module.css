@@ -1,4 +1,14 @@
 .link {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
+    
+
+}
+
+
+input[type=submit] {
+    font-weight: bold;
+    font-size: large;
+
 }
