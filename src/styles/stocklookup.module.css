@@ -1,0 +1,8 @@
+.infoboxes {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form {
+    margin-top: 10px;
+}
