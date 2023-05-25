@@ -7,10 +7,11 @@ const Navbar = () => {
 
         <>
             <header className={styles.header}>
-                <h1>Header</h1> 
+                <h1></h1> 
                     {/* <li> */}
-                        <Link to="/about">About</Link>
-                        <Link to="/about">Contact</Link>
+                        <img src={"logo.png"} width='150' height='5%' alt="" />
+                        {/* <Link to="/about">About</Link> */}
+                        {/* <Link to="/about">Contact</Link> */}
                     {/* </li> */}
                     {/* to={{ pathname: "https://herewecode.io/" }} target="_blank">Click to open HereWeCode (new tab)</Link> */}
             

@@ -131,6 +131,9 @@ import StockDetails from "./StockDetails";
 import CompanyData from "./CompanyData";
 import Header from "./Header";
 import Footer from "./Footer";
+import InfoBox from "./InfoBox";
+import FactBox from "./FactBox";
+import styles from "../styles/stocklookup.module.css"
 
 const StockLookup = () => {
   const [textBoxValue, setTextBoxValue] = useState("");
@@ -138,6 +141,7 @@ const StockLookup = () => {
   const [cikString, setCikString] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [dataFromSecGov, setDataFromSecGov]= useState("")
+  const [recentFilings, setRecentFilings] = useState([])
 
   const [url, setUrl]= useState("")
 
@@ -174,7 +178,7 @@ const StockLookup = () => {
           const data = await response.json();
         //   console.log('secGovFetch', data)
           setDataFromSecGov(data);
-          console.log(dataFromSecGov)
+        //   console.log(dataFromSecGov)
         //   console.log(dataFromSecGov.filings.recent.accessionNumber[0])
         //   console.log(dataFromSecGov.filings.recent.primaryDocument[0])
         //   console.log(`www.sec.gov/Archives/edgar/data/`+(dataFromSecGov.cik)+'/'+(dataFromSecGov.filings.recent.accessionNumber[0])/replace(/-/g, '')+'/'+(dataFromSecGov.filings.recent.primaryDocument[0]))
@@ -191,8 +195,8 @@ const StockLookup = () => {
 
     
 // console.log(`www.sec.gov/Archives/edgar/data/`+(dataFromSecGov.cik)+'/'+(dataFromSecGov.filings.recent.accessionNumber[0]))
-console.log(dataFromSecGov) 
-
+// console.log(dataFromSecGov.filings.files.recent) 
+// console.log(dataFromSecGov.filings.recent.form) 
 
 
   const handleSubmit = (event) => {
@@ -200,12 +204,17 @@ console.log(dataFromSecGov)
     setStockSymbol(textBoxValue);
     setTextBoxValue("");
     setUrl(`www.sec.gov/Archives/edgar/data/${dataFromSecGov.cik}/${(dataFromSecGov.filings.recent.accessionNumber[0]).replace(/-/g, '')}/${dataFromSecGov.filings.recent.primaryDocument[0]}`)
-
-  };
+    // setRecentFilings(`www.sec.gov/Archives/edgar/data/${dataFromSecGov.cik}/${(dataFromSecGov.filings.recent.form)}`)
+    // console.log(recentFilings)
+    // console.log(dataFromSecGov.CIK0000320193.filings.files.recent)
+    // console.log(dataFromSecGov.filings.recent.form) 
+    setRecentFilings(dataFromSecGov.filings.recent.form) 
+    console.log(dataFromSecGov)
+  };    
   return (
     <>
-      
-      <form onSubmit={handleSubmit}>
+    <div></div>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label>Enter the stock symbol or Company Name</label>
         <input
           type="text"
@@ -215,7 +224,12 @@ console.log(dataFromSecGov)
         <button>Submit</button>
       </form>
       <StockDetails ticker={stockSymbol} name={companyName} cik={cikString} />
-      <CompanyData  exchange={dataFromSecGov.exchanges} business={dataFromSecGov.sicDescription} url={url}/>
+      <CompanyData  business={dataFromSecGov.sicDescription} url={url}/>
+      <div className={styles.infoboxes}>
+        <div><InfoBox filing1={recentFilings[0]} filing2={recentFilings[1]} filing3={recentFilings[2]} filing4={recentFilings[3]} filing5={recentFilings[5]} filing6={recentFilings[6]}/></div>
+        {/* <div><FactBox fact1={dataFromSecGov.phone} fact2={dataFromSecGov.addresses.business.city} fact3={dataFromSecGov.addresses.business.stateOrCountry} fact4={dataFromSecGov.exchanges[0]} fact5={dataFromSecGov.fiscalYearEnd} /></div> */}
+        <div><FactBox fact1={dataFromSecGov.phone}   fact5={dataFromSecGov.fiscalYearEnd} /></div>
+      </div>
       <Footer />
     </>
     
