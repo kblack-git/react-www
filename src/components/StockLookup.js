@@ -213,9 +213,9 @@ const StockLookup = () => {
   };    
   return (
     <>
-    <div></div>
+    <div className={styles.form}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label>Enter the stock symbol or Company Name</label>
+        <label>Enter stock symbol</label>
         <input
           type="text"
           value={textBoxValue}
@@ -229,6 +229,7 @@ const StockLookup = () => {
         <div><InfoBox filing1={recentFilings[0]} filing2={recentFilings[1]} filing3={recentFilings[2]} filing4={recentFilings[3]} filing5={recentFilings[5]} filing6={recentFilings[6]}/></div>
         {/* <div><FactBox fact1={dataFromSecGov.phone} fact2={dataFromSecGov.addresses.business.city} fact3={dataFromSecGov.addresses.business.stateOrCountry} fact4={dataFromSecGov.exchanges[0]} fact5={dataFromSecGov.fiscalYearEnd} /></div> */}
         <div><FactBox fact1={dataFromSecGov.phone}   fact5={dataFromSecGov.fiscalYearEnd} /></div>
+      </div>
       </div>
       <Footer />
     </>

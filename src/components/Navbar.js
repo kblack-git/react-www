@@ -9,7 +9,8 @@ const Navbar = () => {
             <header className={styles.header}>
                 <h1></h1> 
                     {/* <li> */}
-                        <img src={"logo.png"} width='150' height='5%' alt="" />
+                    <Link to="/stocklookup" style={{ textDecoration: 'none', fontWeight:'bold', color:'black' }} ><img src={"logo.png"} width='150' height='60px' alt="" /></Link>
+                        
                         {/* <Link to="/about">About</Link> */}
                         {/* <Link to="/about">Contact</Link> */}
                     {/* </li> */}
